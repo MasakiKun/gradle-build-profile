@@ -1,0 +1,41 @@
+plugins {
+	id("java")
+	id("application")
+}
+
+group "kr.ayukawa"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+
+application {
+	mainClassName = "kr.ayukawa.buildprofile.EntryPoint"
+}
+
+def profile = project.getProperties().get("profile")
+if(!project.hasProperty("profile") || !profile) {
+	profile = "development"
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ["src/main/java"]
+		}
+		resources {
+			srcDirs = ["src/main/resources-${profile}"]
+		}
+	}
+}
+
+def versions = [
+]
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+}
