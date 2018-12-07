@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * resources.properties 파일의 값을 읽어들여서 출력하는 간단한 프로그램
+ */
 public class Program {
 	public String getResource() throws IOException {
 		InputStream is = this.getClass().getResourceAsStream("resources.properties");
