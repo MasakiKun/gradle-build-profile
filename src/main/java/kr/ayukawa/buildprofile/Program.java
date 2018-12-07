@@ -9,10 +9,14 @@ import java.util.Properties;
  */
 public class Program {
 	public String getResource() throws IOException {
-		InputStream is = this.getClass().getResourceAsStream("resources.properties");
-		Properties prop = new Properties();
-		prop.load(is);
+		String msg = "";
 
-		return prop.getProperty("msg");
+		try(InputStream is = this.getClass().getResourceAsStream("resources.properties")) {
+			Properties prop = new Properties();
+			prop.load(is);
+			msg = prop.getProperty("msg");
+		}
+
+		return msg;
 	}
 }
