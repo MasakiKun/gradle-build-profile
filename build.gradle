@@ -1,3 +1,6 @@
+import java.nio.file.Paths
+import java.nio.file.Files
+
 plugins {
 	id("java")
 	id("application")
@@ -27,8 +30,15 @@ sourceSets {
 		resources {
 			srcDirs = ["src/main/resources-${profile}"]
 		}
+
+		resources.srcDirs.each{ dir ->
+			if(!dir.exists())
+				throw new RuntimeException("Resource folder [${dir}] is not exists!")
+		}
 	}
 }
+
+
 
 def versions = [
 ]
