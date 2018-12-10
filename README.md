@@ -4,7 +4,7 @@ Gradle을 이용해서 환경별로 별도의 빌드 결과물을 얻을 수 있
 
 ## 기본 아이디어
 
-일반적으로 Gradle을 이용해서 개발을 할 경우, ```src/main/resources``` 폴더에 환경설정 리소스를 넣어두고 개발하는 경우가 많다. 이 점을 이용해서, 아예 개발할때는 ```src/main/resources``` 경로의 리소스를 사용해서 개발하다가, 특정 조건으로 빌드하게 되는 경우에는 ```src/main/release-product``` 등의 별도의 리소스 경로를 이용해서 빌드되게 한다.
+일반적으로 Gradle을 이용해서 개발을 할 경우, ```src/main/resources``` 경로에 환경설정 리소스를 넣어두고 개발하는 경우가 많다. 이 점을 이용해서, 개발할때는 ```src/main/resources``` 경로의 리소스를 사용해서 개발하다가, 특정 빌드 환경변수가 주어진 채로 빌드하는 경우에는 ```src/main/resources-product``` 등의 별도의 리소스 경로를 이용해서 빌드되게 한다.
 
 ## 폴더 구조
 
@@ -43,7 +43,7 @@ sourceSets {
 }
 ```
 
-```build.gradle``` 파일과 같은 경로에 ```gradle.properties``` 파일을 만든다. Gradle은 빌드시 이 파일이 ```build.gradle``` 파일과 동일한 경로에 존재하면 이 값들을 빌드 환경 변수로 등록해준다. ```build.properties``` 파일에 아래 내용을 저장한다.
+```build.gradle``` 파일과 같은 경로에 ```gradle.properties``` 파일을 만든다. Gradle은 빌드시 ```gradle.properties``` 파일이 ```build.gradle``` 파일과 동일한 경로에 존재하면 이 파일에 들어있는 값들을 빌드 환경 변수로 등록하고 빌드한다. ```build.properties``` 파일에 아래 내용을 저장한다.
 
 ```
 profile=product
@@ -91,7 +91,7 @@ A Problem occurred evaluating root project 'gradle-build-profile'.
 
 ## 추가 이슈
 
-### 각 빌드 프로필 별 공통 리소스가 많을떄
+### 각 빌드 프로필 별 공통 리소스가 많을때
 
 각 프로필 별로 공통 리소스가 많고 환경 파일 한두개 정도만 다를 경우, sourceSet 설정시에 리소스 디렉토리를 공통 리소스 디렉토리 하나와 프로필별 개별 디랙토리 하나를 추가해서 설정하도록 한다.
 
